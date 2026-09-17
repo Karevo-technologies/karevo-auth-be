@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: kid_db
+      MYSQL_USER: kid_user
+      MYSQL_PASSWORD: kid_pass
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+  api:
+    build: .
+    ports:
+      - "8000:80"
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: kid_db
+      DB_USER: root
+      DB_PASS: root
+      JWT_SECRET: kid_beta_jwt_secret_change_in_prod_2026!_lautech
+      APP_ENV: development
+    volumes:
+      - .:/var/www/html
+volumes:
+  db_data:
