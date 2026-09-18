@@ -48,8 +48,8 @@ patients, providers, organisations, health_records, record_requests, qr_codes, a
 ## XAMPP Dev
 1. Copy folder to C:/xampp/htdocs/kid-backend
 2. Import schema.sql in phpMyAdmin -> kid_db
-3. https://kid-backend.onrender.com/health
-4. Open tester.html in browser, set base URL to https://kid-backend.onrender.com
+3. https://karevo-backend.onrender.com/health
+4. Open tester.html in browser, set base URL to https://karevo-backend.onrender.com
 
 ## Docker Local
 docker-compose up --build
