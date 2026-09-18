@@ -1,8 +1,6 @@
-# K-ID Backend - Patient + Organisation - Single File PHP + MySQL
+# K-ID Backend - Patient + Organisation - PHP + MySQL
 
-Implements BOTH guides sharing SAME database - no conflicts.
-
-## Patient Guide (22 pages) - All Endpoints
+## Patient - All Endpoints
 - POST /api/patient/register - auto-generates KID-20260001 format, never patient-editable
 - POST /api/patient/login (email/phone/kid_number)
 - GET /api/patient/profile | PATCH /api/patient/profile (forbidden fields 403)
@@ -17,7 +15,7 @@ Implements BOTH guides sharing SAME database - no conflicts.
 - GET /api/patient/organisations | DELETE /api/patient/organisations/:orgId/revoke -> invalidates QR immediately
 - GET /api/patient/dashboard -> total_records, pending, approved, unread, 3 recent
 
-## Organisation Guide (15 pages) - All Endpoints
+## Organisation - All Endpoints
 - POST /api/org/register -> pending, CAC UNIQUE validation
 - POST /api/org/login -> works regardless verification_status
 - GET /api/org/me
@@ -44,18 +42,6 @@ patients, providers, organisations, health_records, record_requests, qr_codes, a
 - Ownership checks, no other org's requests visible
 - activity_log append-only, no UPDATE/DELETE in app layer
 - Standard response format + error codes: UNAUTHORIZED, FORBIDDEN, NOT_FOUND, VALIDATION_ERROR, QR_EXPIRED, QR_USED, RECORD_NOT_OWNED, REQUEST_NOT_APPROVED, ORG_NOT_VERIFIED, ACCESS_REVOKED, PROVIDER_NOT_VERIFIED
-
-## XAMPP Dev
-1. Copy folder to C:/xampp/htdocs/kid-backend
-2. Import schema.sql in phpMyAdmin -> kid_db
-3. https://karevo-backend.onrender.com/health
-4. Open tester.html in browser, set base URL to https://karevo-backend.onrender.com
-
-## Docker Local
-docker-compose up --build
-API at http://localhost:8000/health
-MySQL at localhost:3307
-Tester at http://localhost:8000/tester.html (copy tester.html to docroot if needed, or open locally)
 
 ## Render Production
 1. Push to Github
